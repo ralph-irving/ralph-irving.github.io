@@ -1,5 +1,8 @@
 Squeezelite v1.8.x, Copyright 2012-2015 Adrian Smith, 2015-2018 Ralph Irving.<br>
 <br>
+See the debian squeezelite manpage for usage details.<br>
+https://manpages.debian.org/stretch/squeezelite/squeezelite.1.en.html<br>
+<br>
 This program is free software: you can redistribute it and/or modify<br>
 it under the terms of the GNU General Public License as published by<br>
 the Free Software Foundation, either version 3 of the License, or<br>
@@ -28,8 +31,4 @@ Gordon Henderson, which is subject to its own license.<br>
 <br>
 This software uses libraries from the FFmpeg project under<br>
 the LGPLv2.1 and its source can be downloaded from<br>
-<https://sourceforge.net/projects/lmsclients/files/source/><br>
-<br>
-See the debian squeezelite manpage for usage details.<br>
-https://manpages.debian.org/stretch/squeezelite/squeezelite.1.en.html
-<br>
+<https://sourceforge.net/projects/lmsclients/files/source/>
