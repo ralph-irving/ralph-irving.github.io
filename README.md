@@ -19,6 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.<br>
 Contains dsd2pcm library Copyright 2009, 2011 Sebastian Gesemann which<br>
 is subject to its own license.<br>
 <br>
+Contains the Daphile Project full dsd patch Copyright 2013-2017 Daphile,<br>
+which is subject to its own license.<br>
+<br>
 Option to allow server side upsampling for PCM streams (-W) from<br>
 squeezelite-R2 (c) Marco Curti 2015, marcoc1712@gmail.com.<br>
 <br>
