@@ -30,9 +30,6 @@ This software uses libraries from the FFmpeg project under<br>
 the LGPLv2.1 and its source can be downloaded from<br>
 <https://sourceforge.net/projects/lmsclients/files/source/><br>
 <br>
-<br>
-Usage: squeezelite [options]<br>
-<br>
 See the debian squeezelite manpage for usage details.<br>
 https://manpages.debian.org/stretch/squeezelite/squeezelite.1.en.html
 <br>
