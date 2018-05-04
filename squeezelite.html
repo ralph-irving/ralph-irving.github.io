@@ -1,0 +1,515 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of SQUEEZELITE</TITLE>
+</HEAD><BODY>
+<H1>SQUEEZELITE</H1>
+Section: User Commands  (1)<BR>Updated: 2018-04-25<BR><A HREF="#index">Index</A>
+<A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+squeezelite - Lightweight headless Squeezebox emulator
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>squeezelite</B>
+
+[<I>options</I>]
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>Squeezelite</B>
+
+is a small headless Logitech Squeezebox emulator. It is aimed at supporting high
+quality audio including USB DAC based output at multiple sample rates.
+<P>
+
+The player is controlled using, and media is streamed from, a Logitech Media
+Server instance running somewhere on the local network.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+This program supports the following options:
+<DL COMPACT>
+<DT><B>-?</B>
+
+<DD>
+Show a summary of the available command-line options.
+<DT><B>-s &lt;server&gt;[:&lt;port&gt;]</B>
+
+<DD>
+Connect to the specified Logitech Media Server, otherwise uses automatic
+discovery to find server on the local network. This option should only be needed
+if automatic discovery does not work, or the server is not on the local network
+segment (e.g. behind a router).
+<DT><B>-o &lt;output device&gt;</B>
+
+<DD>
+Specify the audio output device; the default value is
+<I>default</I>.
+
+Use the
+<B>-l</B>
+
+option to list available output devices.
+<I>-</I>
+
+can be used to output raw samples to standard output.
+<DT><B>-l</B>
+
+<DD>
+List available audio output devices to stdout and exit. These device names can
+be passed to the
+<B>-o</B>
+
+option in order to select a particular device or configuration to use for audio
+playback.
+<DT><B>-a &lt;params&gt;</B>
+
+<DD>
+Specify parameters used when opening an audio output device.
+For ALSA, the format
+<B>&lt;b&gt;:&lt;p&gt;:&lt;f&gt;:&lt;m&gt;</B>
+
+is used where
+<B>&lt;b&gt;</B>
+
+is the buffer time in milliseconds (values less than 500) or size in bytes (default
+<I>40</I>ms);
+
+<B>&lt;p&gt;</B>
+
+is the period count (values less than 50) or size in bytes (default
+<I>4</I> periods);
+
+<B>&lt;f&gt;</B>
+
+is the sample format (possible values:
+<I>16</I>, <I>24</I>, <I>24_3</I> or <I>32</I>);
+
+<B>&lt;m&gt;</B>
+
+is whether to use mmap (possible values:
+<I>0</I> or <I>1</I>).
+
+For PortAudio, the value is simply the target latency in milliseconds. When the
+output is sent to standard output, the value can be
+<I>16</I>, <I>24</I> or <I>32</I>,
+
+which denotes the sample size in bits.
+<DT><B>-b &lt;stream&gt;:&lt;output&gt;</B>
+
+<DD>
+Specify internal stream and output buffer sizes in kilobytes.
+<DT><B>-c &lt;codec1&gt;,...</B>
+
+<DD>
+Restrict codecs to those specified, otherwise load all available codecs. Use
+<B>squeezelite -h</B>
+
+to obtain the list of codecs built into <B>squeezelite</B>.
+<DT><B>-C &lt;timeout&gt;</B>
+
+<DD>
+Close the output device after
+<B>&lt;timeout&gt;</B>
+
+seconds of the player being idle; the default is to always keep the device open
+as long as the payer is &quot;on&quot;.
+<DT><B>-d &lt;category&gt;=&lt;level&gt;</B>
+
+<DD>
+Set logging level. Categories are:
+<I>all</I>, <I>slimproto</I>, <I>stream</I>, <I>decode</I>, <I>output</I> or <I>ir</I>.
+
+Levels can be:
+<I>info</I>, <I>debug</I> or <I>sdebug</I>.
+
+The option can be repeated to set different log levels for different categories.
+<DT><B>-e &lt;codec1&gt;,...</B>
+
+<DD>
+Explicitly exclude native support of one or more codecs. See also
+<B>-c</B>,
+
+above.
+<DT><B>-f &lt;logfile&gt;</B>
+
+<DD>
+Send logging output to a log file instead of standard output or standard error.
+<DT><B>-G &lt;Rpi GPIO#&gt;:&lt;H/L&gt;</B>
+
+<DD>
+Specify the BCM GPIO# to use for Amp Power Relay and if the output
+should be Active High or Low. This cannot be used with the <B>-S</B> option.
+<DT><B>-i [&lt;filename&gt;]</B>
+
+<DD>
+Enable LIRC remote control support. If the optional
+<B>&lt;filename&gt;</B>
+
+is not provided,
+<I>~/.lircrc</I>
+
+is used instead.
+<DT><B>-m &lt;mac addr&gt;</B>
+
+<DD>
+Override the player's MAC address. The format must be colon-delimited
+hexadecimal, for example: ab:cd:ef:12:34:56. This is usually automatically
+detected, and should not need to be provided in most circumstances.
+<DT><B>-M &lt;modelname&gt;</B>
+
+<DD>
+Override the player's hardware model name. The default value is
+<I>SqueezeLite</I>.
+
+<DT><B>-n &lt;name&gt;</B>
+
+<DD>
+Set the player name. This name is used by the Logitech Media Server to refer to
+the player by name. This option is mututally exclusive with
+<B>-N</B>.
+
+<DT><B>-N &lt;filename&gt;</B>
+
+<DD>
+Allow the server to set the player's name. The player name is stored in the file
+pointed to by
+<B>&lt;filename&gt;</B>
+
+so that it can persist between restarts. This option is mututally exclusive with
+<B>-n</B>.
+
+<DT><B>-O &lt;mixer device&gt;</B>
+
+<DD>
+Specify mixer device, defaults to <B>&lt;output device&gt;</B>.
+.
+<DT><B>-p &lt;priority&gt;</B>
+
+<DD>
+Set real time priority of output thread (1-99; default
+<I>45</I>).
+
+Not applicable when using PortAudio.
+<DT><B>-P &lt;filename&gt;</B>
+
+<DD>
+Write the process ID (PID) number to the given
+<B>&lt;filename&gt;</B>.
+
+This may be useful when running <B>squeezelite</B> as a daemon.
+<DT><B>-r &lt;rates&gt;[:&lt;delay&gt;]</B>
+
+<DD>
+Specify sample rates supported by the output device; this is required if the
+output device is switched off when <B>squeezelite</B> is started. The format is
+either a single maximum sample rate, a range of sample rates in the format
+<I>&lt;min&gt;</I>-<I>&lt;max&gt;</I>,
+
+or a comma-separated list of available rates. Delay is an optional time to wait
+when switching sample rates between tracks, in milliseconds.
+<DT><B>-S &lt;power script&gt;</B>
+
+<DD>
+Absolute path to script to launch on power commands from LMS. This
+cannot be used with the <B>-G</B> option.
+<DT><B>-u|-R [params]</B>
+
+<DD>
+Enable upsampling of played audio. The argument is optional; see
+<B>RESAMPLING</B>
+
+(below) for more information. The options
+<B>-u</B> and <B>-R</B>
+
+are synonymous.
+<DT><B>-D [delay]</B>
+
+<DD>
+Output device supports DSD over PCM (DoP). DSD streams will be converted to DoP
+before output. If this option is not supplied, DSD streams will be converted to
+PCM and resampled, so they can be played on a PCM DAC. Delay is an optional time
+to wait when switching between PCM and DoP between tracks, in milliseconds.
+<DT><B>-v</B>
+
+<DD>
+Enable visualiser support. This creates a shared memory segment that contains
+some of the audio being played, so that an external visualiser can read and
+process this to create visualisations.
+<DT><B>-W</B>
+
+<DD>
+Read wave and aiff format from header, ignoring server parameters.
+<DT><B>-L</B>
+
+<DD>
+List available volume controls for the output device. Only applicable when
+using ALSA output.
+<DT><B>-U &lt;control&gt;</B>
+
+<DD>
+Unmute the given ALSA
+<B>&lt;control&gt;</B>
+
+at daemon startup and set it to full volume. Use software volume adjustment for
+playback. This option is mutually exclusive with the <B>-V</B> option. Only
+applicable when using ALSA output.
+<DT><B>-V &lt;control&gt;</B>
+
+<DD>
+Use the given ALSA
+<B>&lt;control&gt;</B>
+
+for volume adjustment during playback. This prevents the use of software volume
+control within <B>squeezelite</B>. This option is mutually exclusive with the
+<B>-V</B> option. If neither <B>-U</B> nor <B>-V</B> options are provided,
+no ALSA controls are adjusted while running <B>squeezelite</B> and software
+volume control is used instead. Only applicable when using ALSA output.
+<DT><B>-X</B>
+
+<DD>
+Use linear volume adjustments instead of in terms of dB (only for
+hardware volume control).
+<DT><B>-z</B>
+
+<DD>
+Cause <B>squeezelite</B> to run as a daemon. That is, it detaches itself from the
+terminal and runs in the background.
+<DT><B>-Z &lt;rate&gt;</B>
+
+<DD>
+Report rate to server in helo as the maximum sample rate we can support.
+<DT><B>-t</B>
+
+<DD>
+Display version and license information.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>RESAMPLING</H2>
+
+Audio can be resampled or upsampled before being sent to the output device. This
+can be enabled simply by passing the <B>-u</B> option to <B>squeezelite</B>, but
+further configuration can be given as an argument to the option.
+<P>
+
+Resampling is performed using the SoX Resampler library; the documentation for
+that library and the SoX <I>rate</I> effect many be helpful when configuring
+upsampling for <B>squeezelite</B>.
+<P>
+
+The format of the argument is
+<B>&lt;recipe&gt;:&lt;flags&gt;:&lt;attenuation&gt;:&lt;precision&gt;:&lt;passband_end&gt;:&lt;stopband_start&gt;:&lt;phase_response&gt;</B>
+
+<A NAME="lbAG">&nbsp;</A>
+<H3>recipe</H3>
+
+This part of the argument string is made up of a number of single-character
+flags: <B>[v|h|m|l|q][L|I|M][s][E|X]</B>. The default value is <B>hL</B>.
+<DL COMPACT>
+<DT><I>v</I>, <I>h</I>, <I>m</I>, <I>l</I> or <I>q</I>
+
+<DD>
+are mutually exclusive and correspond to very high, high, medium, low or quick
+quality.
+<DT><I>L</I>, <I>I</I> or <I>M</I>
+
+<DD>
+correspond to linear, intermediate or minimum phase.
+<DT><I>s</I>
+
+<DD>
+changes resampling bandwidth from the default 95% (based on the 3dB point) to
+99%.
+<DT><I>E</I>
+
+<DD>
+exception - avoids resampling if the output device supports the playback sample
+rate natively.
+<DT><I>X</I>
+
+<DD>
+resamples to the maximum sample rate for the output device (&quot;asynchronous&quot;
+resampling).
+<DT><B>Examples</B>
+
+<DD>
+<B>-u vLs</B>
+
+would use very high quality setting, linear phase filter and steep cut-off.
+<BR>
+
+<B>-u hM</B>
+
+would specify high quality, with the minimum phase filter.
+<BR>
+
+<B>-u hMX</B>
+
+would specify high quality, with the minimum phase filter and async upsampling
+to max device rate.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H3>flags</H3>
+
+The second optional argument to <B>-u</B> allows the user to specify the
+following arguments (taken from the <I>soxr.h</I> header file), in hex:
+<P>
+#define SOXR_ROLLOFF_SMALL     0u  /* &lt;= 0.01 dB */
+<BR>
+
+#define SOXR_ROLLOFF_MEDIUM    1u  /* &lt;= 0.35 dB */
+<BR>
+
+#define SOXR_ROLLOFF_NONE      2u  /* For Chebyshev bandwidth. */
+<P>
+#define SOXR_MAINTAIN_3DB_PT   4u  /* Reserved for internal use. */
+<BR>
+
+#define SOXR_HI_PREC_CLOCK     8u  /* Increase 'irrational' ratio accuracy. */
+<BR>
+
+#define SOXR_DOUBLE_PRECISION 16u  /* Use D.P. calcs even if precision &lt;= 20. */
+<BR>
+
+#define SOXR_VR               32u  /* Experimental, variable-rate resampling. */
+<DL COMPACT>
+<DT><B>Examples</B>
+
+<DD>
+<B>-u :2</B>
+
+would specify <B>SOXR_ROLLOFF_NONE</B>.
+<P>
+<B>NB:</B> In the example above the first option, <B>&lt;quality&gt;</B>, has not been
+specified so would default to <B>hL</B>. Therefore, specifying <B>-u :2</B> is
+equivalent to having specified <B>-u hL:2</B>.
+</DL>
+<A NAME="lbAI">&nbsp;</A>
+<H3>attenuation</H3>
+
+Internally, data is passed to the SoX resample process as 32 bit integers and
+output from the SoX resample process as 32 bit integers. Why does this matter?
+There is the possibility that integer samples, once resampled may be clipped
+(i.e. exceed the maximum value). By default, if you do not specify an
+<B>attenuation</B> value, it will default to -1db. A value of <I>0</I> on the
+command line, i.e. <B>-u ::0</B> will disable the default -1db attenuation being
+applied.
+<P>
+<B>NB:</B> Clipped samples will be logged. Keep an eye on the log file.
+<DL COMPACT>
+<DT><B>Examples</B>
+
+<DD>
+<B>-u ::6</B>
+
+specifies to apply -6db (ie. halve the volume) prior to the resampling process.
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H3>precision</H3>
+
+The internal 'bit' precision used in the re-sampling calculations (ie. quality).
+<P>
+<B>NB:</B> HQ = 20, VHQ = 28.
+<DL COMPACT>
+<DT><B>Examples</B>
+
+<DD>
+<B>-u :::28</B>
+
+specifies 28-bit precision.
+</DL>
+<A NAME="lbAK">&nbsp;</A>
+<H3>passband_end</H3>
+
+A percentage value between 0 and 100, where 100 is the Nyquist frequency. The
+default if not explicitly set is <I>91.3</I>.
+<DL COMPACT>
+<DT><B>Examples</B>
+
+<DD>
+<B>-u ::::98</B>
+
+specifies passband ends at 98 percent of the Nyquist frequency.
+</DL>
+<A NAME="lbAL">&nbsp;</A>
+<H3>stopband_start</H3>
+
+A percentage value between 0 and 100, where 100 is the Nyquist frequency. The
+default if not explicitly set is <I>100</I>.
+<DL COMPACT>
+<DT><B>Examples</B>
+
+<DD>
+<B>-u :::::100</B>
+
+specifies that the stopband starts at the Nyquist frequency.
+</DL>
+<A NAME="lbAM">&nbsp;</A>
+<H3>phase_response</H3>
+
+A value between 0-100, where <I>0</I> is equivalent to the recipe <I>M</I> flag
+for minimum phase, <I>25</I> is equivalent to the recipe <I>I</I> flag for
+intermediate phase and <I>50</I> is equivalent to the recipe <I>L</I> flag for
+linear phase.
+<DL COMPACT>
+<DT><B>Examples</B>
+
+<DD>
+<B>-u ::::::50</B>
+
+specifies linear phase.
+</DL>
+<A NAME="lbAN">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<DL COMPACT>
+<DT><A HREF="http://wiki.slimdevices.com/index.php/Squeezelite">http://wiki.slimdevices.com/index.php/Squeezelite</A><DD>
+<DT><A HREF="http://wiki.slimdevices.com/index.php/Logitech_Media_Server">http://wiki.slimdevices.com/index.php/Logitech_Media_Server</A><DD>
+<DT><A HREF="/cgi-bin/man/man2html?1+sox">sox</A>(1)<DD>
+for further information about resampling.
+<P>
+</DL>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">RESAMPLING</A><DD>
+<DL>
+<DT><A HREF="#lbAG">recipe</A><DD>
+<DT><A HREF="#lbAH">flags</A><DD>
+<DT><A HREF="#lbAI">attenuation</A><DD>
+<DT><A HREF="#lbAJ">precision</A><DD>
+<DT><A HREF="#lbAK">passband_end</A><DD>
+<DT><A HREF="#lbAL">stopband_start</A><DD>
+<DT><A HREF="#lbAM">phase_response</A><DD>
+</DL>
+<DT><A HREF="#lbAN">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 11:15:00 GMT, May 04, 2018
+</BODY>
+</HTML>
