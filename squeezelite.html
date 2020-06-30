@@ -2,9 +2,7 @@
 <HTML><HEAD><TITLE>Man page of SQUEEZELITE</TITLE>
 </HEAD><BODY>
 <H1>SQUEEZELITE</H1>
-Section: User Commands  (1)<BR>Updated: 2018-05-23<BR><A HREF="#index">Index</A>
-
-
+Section: User Commands  (1)<BR>Updated: 2020-06-30<BR><A HREF="#index">Index</A>
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
 
@@ -69,8 +67,12 @@ playback.
 
 <DD>
 Specify parameters used when opening an audio output device.
+</DL>
+<P>
+
+<DL COMPACT><DT><DD>
 For ALSA, the format
-<B>&lt;b&gt;:&lt;p&gt;:&lt;f&gt;:&lt;m&gt;</B>
+<B>&lt;b&gt;:&lt;p&gt;:&lt;f&gt;:&lt;m&gt;:&lt;d&gt;</B>
 
 is used where
 <B>&lt;b&gt;</B>
@@ -93,11 +95,64 @@ is the sample format (possible values:
 is whether to use mmap (possible values:
 <I>0</I> or <I>1</I>).
 
-For PortAudio, the value is simply the target latency in milliseconds. When the
-output is sent to standard output, the value can be
+<B>&lt;d&gt;</B>
+
+open ALSA output device twice. (possible values:
+<I>0</I> or <I>1</I>).
+
+</DL>
+
+<DL COMPACT><DT><DD>
+<P>
+
+For Linux PortAudio, the value
+<B>&lt;l&gt;</B>
+
+is simply the target latency in milliseconds.
+</DL>
+
+<DL COMPACT><DT><DD>
+<P>
+
+For MacOS,
+<B>&lt;l&gt;:&lt;r&gt;</B>
+
+<B>&lt;l&gt;</B>
+
+is target latency in milliseconds.
+<B>&lt;r&gt;</B>
+
+open device in Pro Mode or Play Nice (respective values:
+<I>0</I> or <I>1</I>).
+
+</DL>
+
+<DL COMPACT><DT><DD>
+<P>
+
+For Windows,
+<B>&lt;l&gt;:&lt;e&gt;</B>
+
+<B>&lt;l&gt;</B>
+
+is target latency in milliseconds.
+<B>&lt;e&gt;</B>
+
+use exclusive mode for WASAPI (possible values:
+<I>0</I> or <I>1</I>).
+
+</DL>
+
+<DL COMPACT><DT><DD>
+<P>
+
+When the output is sent to standard output, the value can be
 <I>16</I>, <I>24</I> or <I>32</I>,
 
-which denotes the sample size in bits.
+which denotes the sample size in bits. Little Endian only.
+</DL>
+
+<DL COMPACT>
 <DT><B>-b &lt;stream&gt;:&lt;output&gt;</B>
 
 <DD>
@@ -496,6 +551,6 @@ for further information about resampling.
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 13:33:48 GMT, April 28, 2019
+Time: 13:46:33 GMT, June 30, 2020
 </BODY>
 </HTML>
