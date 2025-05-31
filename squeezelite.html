@@ -2,7 +2,7 @@
 <HTML><HEAD><TITLE>Man page of SQUEEZELITE</TITLE>
 </HEAD><BODY>
 <H1>SQUEEZELITE</H1>
-Section: User Commands  (1)<BR>Updated: 2020-07-16<BR><A HREF="#index">Index</A>
+Section: User Commands  (1)<BR>Updated: 2025-05-31<BR><A HREF="#index">Index</A>
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
 
@@ -23,7 +23,7 @@ is a small headless Logitech Squeezebox emulator. It is aimed at supporting high
 quality audio including USB DAC based output at multiple sample rates.
 <P>
 
-The player is controlled using, and media is streamed from, a Logitech Media
+The player is controlled using, and media is streamed from, a Lyrion Music
 Server instance running somewhere on the local network.
 <A NAME="lbAE">&nbsp;</A>
 <H2>OPTIONS</H2>
@@ -37,7 +37,7 @@ Show a summary of the available command-line options.
 <DT><B>-s &lt;server&gt;[:&lt;port&gt;]</B>
 
 <DD>
-Connect to the specified Logitech Media Server, otherwise uses automatic
+Connect to the specified Lyrion Music Server, otherwise uses automatic
 discovery to find server on the local network. This option should only be needed
 if automatic discovery does not work, or the server is not on the local network
 segment (e.g. behind a router).
@@ -156,7 +156,7 @@ which denotes the sample size in bits. Little Endian only.
 <DT><B>-b &lt;stream&gt;:&lt;output&gt;</B>
 
 <DD>
-Specify internal stream and output buffer sizes in kilobytes. Default is 2048:3446.
+Specify internal stream and output buffer sizes in kilobytes. Default is 2048:3445.
 <DT><B>-c &lt;codec1&gt;,...</B>
 
 <DD>
@@ -193,10 +193,11 @@ above.
 
 <DD>
 Send logging output to a log file instead of standard output or standard error.
-<DT><B>-G &lt;Rpi GPIO#&gt;:&lt;H/L&gt;</B>
+<DT><B>-G &lt;GPIO Chip&gt;:&lt;GPIO#&gt;:&lt;H/L&gt;</B>
 
 <DD>
-Specify the BCM GPIO# to use for Amp Power Relay and if the output
+Specify the kernel gpio chip number.
+Specify the GPIO Line# to use for Amp Power Relay and if the output
 should be Active High or Low. This cannot be used with the <B>-S</B> option.
 <DT><B>-i [&lt;filename&gt;]</B>
 
@@ -223,8 +224,8 @@ Override the player's hardware model name. The default value is
 <DT><B>-n &lt;name&gt;</B>
 
 <DD>
-Set the player name. This name is used by the Logitech Media Server to refer to
-the player by name. This option is mututally exclusive with
+Set the player name. This name is used by the Lyrion Music Server to refer to
+the player by name. This option is mutually exclusive with
 <B>-N</B>.
 
 <DT><B>-N &lt;filename&gt;</B>
@@ -234,7 +235,7 @@ Allow the server to set the player's name. The player name is stored in the file
 pointed to by
 <B>&lt;filename&gt;</B>
 
-so that it can persist between restarts. This option is mututally exclusive with
+so that it can persist between restarts. This option is mutually exclusive with
 <B>-n</B>.
 
 <DT><B>-O &lt;mixer device&gt;</B>
@@ -412,24 +413,17 @@ to max device rate.
 The second optional argument to <B>-u</B> allows the user to specify the
 following arguments (taken from the <I>soxr.h</I> header file), in hex:
 <P>
+<PRE>
 #define SOXR_ROLLOFF_SMALL     0u  /* &lt;= 0.01 dB */
-<BR>
-
 #define SOXR_ROLLOFF_MEDIUM    1u  /* &lt;= 0.35 dB */
-<BR>
-
 #define SOXR_ROLLOFF_NONE      2u  /* For Chebyshev bandwidth. */
-<P>
+
 #define SOXR_MAINTAIN_3DB_PT   4u  /* Reserved for internal use. */
-<BR>
-
 #define SOXR_HI_PREC_CLOCK     8u  /* Increase 'irrational' ratio accuracy. */
-<BR>
-
 #define SOXR_DOUBLE_PRECISION 16u  /* Use D.P. calcs even if precision &lt;= 20. */
-<BR>
-
 #define SOXR_VR               32u  /* Experimental, variable-rate resampling. */
+</PRE>
+
 <DL COMPACT>
 <DT><B>Examples</B>
 
@@ -522,7 +516,7 @@ specifies linear phase.
 
 <DL COMPACT>
 <DT><A HREF="http://wiki.slimdevices.com/index.php/Squeezelite">http://wiki.slimdevices.com/index.php/Squeezelite</A><DD>
-<DT><A HREF="http://wiki.slimdevices.com/index.php/Logitech_Media_Server">http://wiki.slimdevices.com/index.php/Logitech_Media_Server</A><DD>
+<DT><A HREF="https://lyrion.org/">https://lyrion.org/</A><DD>
 <DT><A HREF="/cgi-bin/man/man2html?1+sox">sox</A>(1)<DD>
 for further information about resampling.
 <P>
@@ -551,6 +545,6 @@ for further information about resampling.
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 15:55:22 GMT, July 16, 2020
+Time: 12:54:56 GMT, May 31, 2025
 </BODY>
 </HTML>
